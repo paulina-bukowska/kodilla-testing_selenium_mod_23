@@ -1,5 +1,4 @@
 package com.kodilla.testing2.google.config;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -10,7 +9,7 @@ public class WebDriverConfig {
 
     public static WebDriver getDriver(final String driver) {
         System.setProperty("webdriver.gecko.driver", "C:\\Selenium-drivers\\Firefox\\geckodriver.exe");
-        System.setProperty("webdriver.chrome.driver", "C:\\Selenium-drivers\\Chrome\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Selenium-drivers\\Chrome\\chromedriver_win32\\chromedriver.exe");
 
         if(driver.equals(FIREFOX)) {
             return new FirefoxDriver();
