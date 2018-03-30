@@ -9,7 +9,7 @@ public class GoogleTestingApp {
     public static final String SEARCHFIELD = "lst-ib";
 
     public static void main(String[] args) {
-        WebDriver driver = WebDriverConfig.getDriver(WebDriverConfig.CHROME);
+        WebDriver driver = WebDriverConfig.getDriver(WebDriverConfig.FIREFOX);
         driver.get("https://www.google.com");
 
         WebElement searchField = driver.findElement(By.id(SEARCHFIELD));
