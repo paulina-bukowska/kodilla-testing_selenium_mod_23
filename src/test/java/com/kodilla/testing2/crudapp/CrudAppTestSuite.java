@@ -4,6 +4,7 @@ import com.kodilla.testing2.google.config.WebDriverConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -52,6 +53,8 @@ public class CrudAppTestSuite {
     }
 
     private void deleteCrudAppTestTask(String taskName) throws InterruptedException {
+        // to click the "OK" button in an alert box
+        driver.switchTo().alert().accept();
 
         driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
                 .filter(anyForm -> anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]")).getText().equals(taskName))
@@ -59,7 +62,6 @@ public class CrudAppTestSuite {
                                     WebElement element = theForm.findElement(By.xpath(".//button[4]"));
                                     element.click();
                 });
-        Thread.sleep(2000);
     }
 
     private void sendTestTaskToTrello(String taskName) throws InterruptedException {
@@ -100,13 +102,13 @@ public class CrudAppTestSuite {
         driverTrello.findElement(By.id("password")).sendKeys("kodilla_trello");
         driverTrello.findElement(By.id("login")).submit();
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
-        driverTrello.findElements(By.xpath("//a[@class=\"board-title\"]")).stream()
-                .filter(aHref -> aHref.findElements(By.xpath(".//span[@title=\"Kodilla Board\"]")).size() > 0)
+        driverTrello.findElements(By.xpath("//a[@class=\"board-tile\"]")).stream()
+                .filter(aHref -> aHref.findElements(By.xpath(".//span[@title=\"Kodilla Application\"]")).size() > 0)
                 .forEach(aHref -> aHref.click());
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         result = driverTrello.findElements(By.xpath("//span")).stream()
                 .filter(theSpan -> theSpan.getText().contains(taskName))
